@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeo Currency Converter</title>
+    <link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+    <header>
+        <div class="header_info">
+            <h2>Convert Currency</h2>
+        </div>
+    </header>
+    <main>
+        <div class="main_con">
+            <form class="formHandler" action="/currency" method="post">
+                <div class="form_box">
+                    <label for="amount">Amount</label>
+                    <input type="text" name="amount" id="amount" required>
+                </div>
+                <div class="form_flex">
+                    <div class="form_box">
+                        <label for="fromCurrency">From:</label>
+                        <select name="fromCurrency" id="fromCurrency" required>
+                            <% for(let code in currencies) { %>
+                                <option value="<%= code %>"><%= currencies[code] %></option>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="form_box">
+                        <label for="toCurrency">To:</label>
+                        <select name="toCurrency" id="toCurrency" required>
+                            <% for(let code in currencies) { %>
+                                <option value="<%= code %>"><%= currencies[code] %></option>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit">Convert</button>
+            </form>
+            <% if(answer != 0) {%>
+            <div class="result">
+                <h3>Result</h3>
+                <div class="result_flex">
+                    <p id="result"> <%= answer %></p>
+                    <p > <%= currencyName %></p>
+                </div>
+            </div>
+            <% }%>
+            
+        </div>
+    </main>
+</body>
+</html>
